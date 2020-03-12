@@ -24,7 +24,7 @@ Synthèse (assistée) d'un contrôleur du niveau d'une cuve}
 
 \date{}
 
-\author{Nom1 \and Nom2 \and Nom3}
+\author{CATALDI \and ERRARD}
 
 \maketitle
 
@@ -128,10 +128,23 @@ L'assertion associée permet donc de définir que le nombre d'erreurs du systèm
 
 \section{Construction d'un contrôleur initial plus performant}
 \subsection{Rôle du composant {\tt ValveVirtual}(2 points)}
-% A COMPLETER en expliquant sa sémantique et son rôle.
+\begin{flushleft}
+    Le composant ValveVirtual est une alternative au composant Valve présent dans Ctrl.
+    La ValveVirtual possède non seulement un rate mais aussi un rateReal, le premier étant modifier par la valve et le second par le contrôleur.
+    Contrairement à la Valve classique qui utilise un booléen pour savoir si elle est coincé, celle-ci compare sa valeur rate et rateReal, la ValveVirtual utilise ces deux valeurs comme garde de ses transitions, si les deux valeurs sont les mêmes alors la ValveVirtual n'est pas coincé et peut donc effectuer des transitions, si les deux valeurs sont différentes alors la ValveVirtual ne fait rien.
+
+\end{flushleft}
 
 \subsection{Rôle du composant {\tt CtrlVV} (5 points)}
 % A COMPLETER en expliquant les mécanismes mis en oeuvre, leurs rôles et les avantages de ce contrôleur par rapport au précédent CtrlVV.
+
+\begin{flushleft}
+    Le composant CtrlVV est une alternative au Ctrl qui au lieu d'utiliser des Valve, utilise des ValveVirtual.
+    Ce composant vérifie par le biais d'assertion que les valeurs de ses rate et les rateReal de ses ValveVirtual soient les mêmes.
+    Ces assertions, un fois combiner avec les gardes des ValveVirtual garantisse que si tout va bien alors les valeurs des rate des ValveVirtual et celle du CtrlVV soient les mêmes.
+    En plus, à la différences du Ctrl, le CtrlVV fait aussi la synchronisation entre les différentes ValveVirtual lors des actions du contrôleur.
+
+\end{flushleft}
 
 \section{Résultats avec le contrôleur {\tt CtrlVV}}
 \subsection{Calcul d'un contrôleur}
@@ -142,7 +155,13 @@ L'assertion associée permet donc de définir que le nombre d'erreurs du systèm
 %\lstinputlisting{Res/System0FCtrlVV0F3I.res}
 %\lstinputlisting{Res/System0FCtrlVV0F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système utilisant le contrôleur CtrlVV avec 0 erreur, on constate que entre le contrôleur de base et la dernière itération on diminue de 153 le nombre d'état total
+    et de  1355 le nombre de transition. De plus, on supprime entièrement les états puits et les états de niveaux critiques ce qui fait que nous n'avons plus de situation redouté. 
+    De plus dans le  contrôleur de base, environ 29 \% des transitions sont des coups gagnants.
+    A la dernière itération 71 \% des transitions sont gagnantes.
+    
+\end{flushleft}
 
 \subsubsection{Avec 1 défaillance (0.5 point)}
 \lstinputlisting{Res/System1FCtrlVV.res}
@@ -151,7 +170,13 @@ L'assertion associée permet donc de définir que le nombre d'erreurs du systèm
 \lstinputlisting{Res/System1FCtrlVV1F3I.res}
 \lstinputlisting{Res/System1FCtrlVV1F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système utilisant le contrôleur CtrlVV avec 1 erreur, on constate que entre le contrôleur de base et la dernière itération on diminue de 977 le nombre d'état total
+    et de 7625 le nombre de transition. De plus, on supprime entièrement les états puits et les états de niveaux critiques ce qui fait que nous n'avons plus de situation redouté. 
+    De plus dans le contrôleur de base, environ 22 \% des transitions sont des coups gagnants.
+    A la dernière itération 53 \% des transitions sont gagnantes.
+    
+\end{flushleft}
 
 \subsubsection{Avec 2 défaillances (0.5 point)}
 \lstinputlisting{Res/System2FCtrlVV.res}
@@ -160,7 +185,13 @@ L'assertion associée permet donc de définir que le nombre d'erreurs du systèm
 \lstinputlisting{Res/System2FCtrlVV2F3I.res}
 %\lstinputlisting{Res/System2FCtrlVV2F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système utilisant le contrôleur CtrlVV avec 2 erreur, on constate que entre le contrôleur de base et la dernière itération on diminue de 2396 le nombre d'état total
+    et de 15890 le nombre de transition. De plus, on supprime entièrement les états puits et les états de niveaux critiques ce qui fait que nous n'avons plus de situation redouté. 
+    De plus dans le contrôleur de base, environ 14 \% des transitions sont des coups gagnants.
+    A la dernière itération 25 \% des transitions sont gagnantes.
+    
+\end{flushleft}
 
 \subsubsection{Avec 3 défaillances (0.5 point)}
 \lstinputlisting{Res/System3FCtrlVV.res}
@@ -169,7 +200,13 @@ L'assertion associée permet donc de définir que le nombre d'erreurs du systèm
 \lstinputlisting{Res/System3FCtrlVV3F3I.res}
 %\lstinputlisting{Res/System3FCtrlVV3F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système utilisant le contrôleur CtrlVV avec 3 erreur, on constate que entre le contrôleur de base et la dernière itération on diminue de 2887 le nombre d'état total
+    et de 18772 le nombre de transition. De plus, on supprime entièrement les états puits et les états de niveaux critiques ce qui fait que nous n'avons plus de situation redouté. 
+    De plus dans le contrôleur de base, environ 13 \% des transitions sont des coups gagnants.
+    A la dernière itération 25 \% des transitions sont gagnantes.
+    
+\end{flushleft}
 
 \subsection{Calcul des contrôleurs optimisés (2 points)}
 % A COMPLETER en analysant les contrôleurs optimisés obtenus.
