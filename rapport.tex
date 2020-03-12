@@ -35,10 +35,14 @@ Synthèse (assistée) d'un contrôleur du niveau d'une cuve}
 Le rapport est sur 20 points.
 
 \section{Rôle du fichier {\tt GNUmakefile} (2 points)}
-% A COMPLETER en expliquant les enchainements des calculs effectués.
+Les fichiers GNUmakefile permettent de générer différents contrôleurs (classique et optimisés, avec et sans vannes virtuelles).
+Les différents contrôleurs sont donc générer en fonction d'un nombre maximum d'erreurs possible (allant de 0 à 3).
+On optimise ensuite ses controleurs en itérant 5 fois sur le contrôleur précédent générer.
+Il retourne également les résultats des spécification pour chacun des contrôleurs générer.
 
 \section{Rôle de la constante {\tt nbFailures} et de l'assertion associée (1 point)}
-% A COMPLETER en expliquant le rôle de la constante.
+La constante {\tt nbFailures} permet de représenter le nombre maximum d'erreur du système possible.
+L'assertion associée permet donc de définir que le nombre d'erreurs du système ne peux pas dépasser nbFailures. 
 
 \section{Résultats avec le contrôleur initial {\tt Ctrl}}
 \subsection{Calcul d'un contrôleur}
@@ -49,7 +53,16 @@ Le rapport est sur 20 points.
 %\lstinputlisting{Res/System0FCtrl0F3I.res}
 %\lstinputlisting{Res/System0FCtrl0F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système avec 0 erreur, on constate qu'a partir de la 1 ème itération on diminue de 153 le nombre d'état total
+    et de 3225 le nombre de transition. On obtient également plus aucun état dans un niveau critique ou une situation redouté.
+    De plus dans le  contrôleur de base, environ 33 \% des transitions sont des coups gagnants.
+    A partir de la première itération 83\% des transition sont gagnant.
+    
+    On remarque également qu'il n'y a aucune différences entre le résultats à la 1ère et à la deuxième itération sont identique.
+    On peut donc déterminé qu'on a générer le contrôleur optimal au bout de la première itération. 
+        
+\end{flushleft}
 
 \subsubsection{Avec 1 défaillance (0.5 point)}
 \lstinputlisting{Res/System1FCtrl.res}
@@ -58,7 +71,16 @@ Le rapport est sur 20 points.
 \lstinputlisting{Res/System1FCtrl1F3I.res}
 %\lstinputlisting{Res/System1FCtrl1F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système avec 1 erreur, on constate que entre le controleur de base et la dernière itération on diminue de 450 le nombre d'état total
+    et de  14 379 le nombre de transition. On obtient également 260  état de moins dans un niveau critique et 233 état de moins dans une situation redouté.
+    Mais le nombre de d'état puis est passé de 0 à 96. 
+    De plus dans le  contrôleur de base, environ 25 \% des transitions sont des coups gagnants.
+    A la dernière itération 56\% des transition sont gagnant.
+    
+    On remarque qu'on obtient le nombre optimal d'état dès la première itération. Et qu'au fil des itération on augmente le pourcentage de coup gagnant mais on augmente aussi le nombre de situation redouté.
+    
+\end{flushleft}
 
 \subsubsection{Avec 2 défaillances (0.5 point)}
 \lstinputlisting{Res/System2FCtrl.res}
@@ -67,7 +89,16 @@ Le rapport est sur 20 points.
 \lstinputlisting{Res/System2FCtrl2F3I.res}
 \lstinputlisting{Res/System2FCtrl2F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système avec 2 erreurs, on constate que entre le controleur de base et la dernière itération on diminue de 855 le nombre d'état total
+    et de  38 074 le nombre de transition. On obtient également 444 état de moins dans un niveau critique et 281 état de moins dans une situation redouté.
+    Mais le nombre de d'état puis est passé de 0 à 270. 
+    De plus dans le  contrôleur de base, environ 16\% des transitions sont des coups gagnants.
+    A la dernière itération 43\% des transition sont gagnant.
+    
+    On constate qu'on obtient le contrôleur le plus optimal à partir de la 3ème itération car aucune des valeur ne change.
+    
+\end{flushleft}
 
 \subsubsection{Avec 3 défaillances (0.5 point)}
 \lstinputlisting{Res/System3FCtrl.res}
@@ -76,7 +107,16 @@ Le rapport est sur 20 points.
 \lstinputlisting{Res/System3FCtrl3F3I.res}
 %\lstinputlisting{Res/System3FCtrl3F4I.res}
 \paragraph{Interprétation des résultats}
-% A COMPLETER
+\begin{flushleft}
+    On constate que pour un système avec 3 erreurs, on constate que entre le controleur de base et la dernière itération on diminue de 855 le nombre d'état total
+    et de  38 074 le nombre de transition. On obtient également 1770 état de moins dans un niveau critique et 281 état de moins dans une situation redouté.
+    Mais le nombre de d'état puis est passé de 0 à 270. 
+    De plus dans le  contrôleur de base, environ 16\% des transitions sont des coups gagnants.
+    A la dernière itération 43\% des transition sont gagnant.
+    
+    On constate qu'on obtient le contrôleur le plus optimal à partir de la 3ème itération car aucune des valeur ne change.
+    
+\end{flushleft}
 
 \subsection{Calcul des contrôleurs optimisés (2 points)}
 \lstinputlisting{ControleursOpt/Optimisation.alt}
